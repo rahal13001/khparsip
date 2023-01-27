@@ -1,0 +1,132 @@
+.page-break {
+    page-break-after: always;
+    }
+    .kop{
+        position: absolute;
+        width: 609px;
+        height: 117px;
+        left: 35px;
+        top: 26px;
+    }
+
+    .judul{
+        position: absolute;
+        width: 500px;
+        height: 17px;
+        left: 99px;
+        top: 152px;
+
+
+        text-align: center;
+    }
+
+    .datadiri{
+        position: absolute;
+        width: 500px;
+        height: 200px;
+        left: 59px;
+        top: 250px;
+        border-spacing: 10px;
+    }
+    .opening{
+        position: absolute;
+        width: 300px;
+        height: 16px;
+        left: 59px;
+        top: 450px;
+    }
+    .u1{
+        position: absolute;
+        width: 610px;
+        height: 211px;
+        left: 59px;
+        top: 500px;
+        text-align: justify;
+        text-justify: auto;
+        /* margin-bottom: 10px;
+        line-height: 20px; */
+    }
+    .u2{
+        position: absolute;
+        width: 610px;
+        height: 133px;
+        left: 59px;
+        top: 745px;
+        text-align: justify;
+        text-justify: auto;
+    }
+
+    .u3dan8{
+        position: absolute;
+        width: 610px;
+        height: 134px;
+        left: 59px;
+        top: 55px;
+        text-align: justify;
+        text-justify: auto;
+    }
+
+    .u4{
+        position: absolute;
+        width: 610px;
+        height: 134px;
+        left: 59px;
+        top: 250px;
+        text-align: justify;
+        text-justify: auto;
+    }
+
+    .u5{
+        position: absolute;
+        width: 610px;
+        height: 134px;
+        left: 59px;
+        top: 445px;
+        text-align: justify;
+        text-justify: auto;
+    }
+    .u6{
+        position: absolute;
+        width: 610px;
+        height: 134px;
+        left: 59px;
+        top: 640px;
+        text-align: justify;
+        text-justify: auto;
+    }
+    .u7{
+        position: absolute;
+        width: 610px;
+        height: 134px;
+        left: 59px;
+        top: 835px;
+        text-align: justify;
+        text-justify: auto;
+    }
+    .u9{
+        position: absolute;
+        width: 610px;
+        height: 250px;
+        left: 59px;
+        top: 250px;
+        text-align: justify;
+        text-justify: auto;
+    }
+    .saran{
+        position: absolute;
+        width: 610px;
+        height: 250px;
+        left: 59px;
+        top: 580px;
+        text-align: justify;
+        text-justify: auto;
+    }
+
+    .qr{
+        position: absolute;
+        width: 490px;
+        height: 99px;
+        left: 58px;
+        top: 55px;        
+    }
+
