@@ -136,7 +136,7 @@
                 <div class="text-danger mt-2 d-block">{{ $message }}</div> 
                 @enderror                                  
             </div>
-
+            
             <div class="mt-3">
                 <label for="dasar_pelaksanaan"><strong>Dasar Pelaksanaan Kegiatan</strong></label>
                     <textarea wire:model="dasar_pelaksanaan"
