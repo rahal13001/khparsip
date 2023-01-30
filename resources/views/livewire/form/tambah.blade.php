@@ -4,6 +4,19 @@
      <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     @endsection
      <div class="container">
+
+        @if ($errors->any())
+        <div class="alert alert-danger alert-dismissible fade show">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            Tambah Data Gagal !!! <i class="bi bi-emoji-frown"></i>
+            <ul>
+                @foreach ($errors->all() as $error)
+                     <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+        @endif
+
  
          <h3><strong>Tambah Data</strong></h3>
 
@@ -70,25 +83,6 @@
                     <div class="text-danger mt-2 d-block">{{ $message }}</div>
                     @enderror   
                 </div>
-             
-           
-         
-                {{-- <div class="form-group mt-3">
-                    <label for="subkategori"><strong>Pilih Subkategori</strong></label>
-                    <select name="subkategori" id="subkategori" class="form-select input-rounded" multiple>
-                        <option disabled>Pilih SubKategori</option>
-                        @foreach ($selectedSubkategori as $items)
-                            @foreach ($items->subcategories as $item)
-                            <option value="{{ $item->id }}">{{ $item->nama }}</option>
-                            @endforeach
-                                
-                        @endforeach                   
-                    </select>                   
-                    @error('kategori')
-                    <div class="text-danger mt-2 d-block">{{ $message }}</div>
-                    @enderror                                  
-                </div> --}}
-         
            @endif
 
 
@@ -101,7 +95,17 @@
              <div class="text-danger mt-2 d-block">{{ $message }}</div> 
              @enderror                                  
          </div>
- 
+
+         <div class="mt-3">
+            <label for="dasar_pelaksanaan"><strong>Dasar Pelaksanaan Kegiatan</strong></label>
+                <textarea wire:model="dasar_pelaksanaan"
+                    class="form-control"
+                    name="dasar_pelaksanaan"
+                    id="dasar_pelaksanaan">{{Request::old('dasar_pelaksanaan')}}</textarea>
+                    @error('dasar_pelaksanaan')
+                    <div class="text-danger mt-2 d-block">{{ $message }}</div>
+                 @enderror                        
+            </div>
  
          <div class="mt-3">
              <label for="what"><strong>What</strong></label>
@@ -116,7 +120,7 @@
  
          <div class="form-group mt-3">
                  <label for="where"><strong>Where</strong></label>
-                 <input type="text" name="where" wire:model = "where" id="where" class="form-control input-rounded" placeholder="Masukan Nomor Surat Tugas" value="{{ old('where') }}" maxlength="250">                  
+                 <input type="text" name="where" wire:model = "where" id="where" class="form-control input-rounded" placeholder="Masukan Lokasi Kegiatan" value="{{ old('where') }}" maxlength="250">                  
                  @error('where')
                  <div class="text-danger mt-2 d-block">{{ $message }}</div> 
                  @enderror                                  
@@ -151,6 +155,7 @@
                   @enderror                        
              </div>
      
+    
           <div class="form-group mt-3">
                  <label for="penyelenggara"><strong>Penyelenggara</strong></label>
                  <input type="text" name="penyelenggara" id="penyelenggara" wire:model="penyelenggara" class="form-control input-rounded" placeholder="Masukan Penyelenggara" value="{{ old('penyelenggara') }}">                  
@@ -302,7 +307,18 @@
                  </div>
              </div>
      
-     
+             @if ($errors->any())
+             <div class="alert alert-danger alert-dismissible fade show">
+                 <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                 Tambah Data Gagal !!! <i class="bi bi-emoji-frown"></i>
+                 <ul>
+                     @foreach ($errors->all() as $error)
+                          <li>{{ $error }}</li>
+                     @endforeach
+                 </ul>
+             </div>
+             @endif
+
              <div class="text-center mt-5 mb-3">
                  <button class="btn btn-primary" wire:click=submit type="submit" wire:loading.attr="disabled">Kirim</button>
                  <a href="{{ url('/') }}" wire:loading.attr="disabled" class="btn btn-warning ml-5">Kembali Ke Dashboard</a>

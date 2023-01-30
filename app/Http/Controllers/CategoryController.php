@@ -14,4 +14,8 @@ class CategoryController extends Controller
 
         return view('admin.subkategori', compact('categories'));
     }
+
+    public function Categorydasboard(Category $category){
+        return view('admin.dashboardkategori', compact('category'));
+    }
 }

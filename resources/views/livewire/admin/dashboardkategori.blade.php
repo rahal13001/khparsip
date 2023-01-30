@@ -40,17 +40,18 @@
 
     </div>
     <div class="row mb-2">
-        <div class="col-md-4 col-sm-4" wire:ignore>
-          <label for="kategori">Filter Kategori</label><br>
-          <select name="kategori" id="kategori" class="form-control input-rounded select2" multiple>
-            <option disabled>Pilih Kategori</option>
-          @foreach ($categories as $category )
-             <option value="{{ $category->id }}">{{ $category->nama }}</option>
-          @endforeach
-          </select> 
-
-        </div>
-
+        @if (!is_null($subcategories))
+            <div class="col-md-4 col-sm-4" wire:ignore>
+                <label for="subkategori">Filter Subkategori</label><br>
+                <select name="subkategori" id="subkategori" class="form-control input-rounded select2" multiple>
+                <option disabled>Pilih Subkategori</option>
+                @foreach ($subcategories as $subcategory )
+                <option value="{{ $subcategory->id }}">{{ $subcategory->nama }}</option>
+                @endforeach
+                </select> 
+          </div>
+        @endif
+  
         <div class="col-md-3 col-sm-3 d-flex">
             <div class="d-grid btn-group" role="group">
               @if ($checked)
@@ -64,28 +65,6 @@
               @endif
             </div>
           </div>
-
-
-    </div>
-    <div class="row mb-2">
-      @if (!is_null($selectedSubkategori) && count($selectedSubkategori)>0)
-        <div class="col-md-23 col-sm-12">
-        ---- Sub Kategori ---- <br>
-        
-              @foreach ($selectedSubkategori as $items)
-                        <strong>Kategori : {{ $items->nama }}</strong><br>
-                        @foreach ($items->subcategories as $item)
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="checkbox" value="{{ $item->id }}" wire:model.lazy="subkategori">
-                            <label class="form-check-label">
-                            {{ $item->nama }}
-                            </label>
-                        </div>
-                        @endforeach<br>
-               @endforeach
-        
-        </div>
-      @endif
     </div>
 
     @if ($selectPage)
@@ -166,11 +145,12 @@
  <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
  <script>
     $(document).ready(function() {
-      $('#kategori').select2();
-              $('#kategori').on('change', function (e) {
-                  var data = $('#kategori').select2("val");
-              @this.set('kategori', data);
+      $('#subkategori').select2();
+              $('#subkategori').on('change', function (e) {
+                  var data = $('#subkategori').select2("val");
+              @this.set('subkategori', data);
               });
     });
 </script>
 @endpush
+

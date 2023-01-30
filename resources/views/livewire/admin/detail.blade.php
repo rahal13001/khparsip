@@ -13,6 +13,21 @@
 
                 <label class="form-check-label" for="edit_toggle"><b>Edit</b></label>
               </div>
+            
+            
+              @if ($errors->any())
+              <div class="alert alert-danger alert-dismissible fade show">
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                  Edit Data Gagal !!! <i class="bi bi-emoji-frown"></i>
+                  <ul>
+                      @foreach ($errors->all() as $error)
+                           <li>{{ $error }}</li>
+                      @endforeach
+                  </ul>
+              </div>
+              @endif
+            
+            
             {{-- Penyusun --}}
             <div class="form-group mt-3" wire:ignore>
                 <label for="user_id"><strong>Nama Penyusun</strong></label>
@@ -121,6 +136,17 @@
                 <div class="text-danger mt-2 d-block">{{ $message }}</div> 
                 @enderror                                  
             </div>
+
+            <div class="mt-3">
+                <label for="dasar_pelaksanaan"><strong>Dasar Pelaksanaan Kegiatan</strong></label>
+                    <textarea wire:model="dasar_pelaksanaan"
+                        class="form-control"
+                        name="dasar_pelaksanaan"
+                        id="dasar_pelaksanaan"  {{ $edit_toggle != true ? "disabled" : "" }}>{{Request::old('dasar_pelaksanaan')}}</textarea>
+                        @error('dasar_pelaksanaan')
+                        <div class="text-danger mt-2 d-block">{{ $message }}</div>
+                     @enderror                        
+                </div>
    
             <div class="mt-3">
                 <label for="what"><strong>What</strong></label>
@@ -178,6 +204,7 @@
                         <div class="text-danger mt-2 d-block">{{ $message }}</div>
                      @enderror                        
                 </div>
+           
         
              <div class="form-group mt-3">
                     <label for="penyelenggara"><strong>Penyelenggara</strong></label>
@@ -374,6 +401,18 @@
                     </div>
                     </div>
                 </div>
+
+                @if ($errors->any())
+                <div class="alert alert-danger alert-dismissible fade show">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    Edit Data Gagal !!! <i class="bi bi-emoji-frown"></i>
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                             <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+                @endif
         
             <div class="row">
                 <div class="text-center mt-5 mb-3" >

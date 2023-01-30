@@ -23,7 +23,7 @@ class Detail extends Component
             $pengikut = [],
             $how, $who, $what, $where, $when, $why, $user_id, $no_st,
             $tanggal_selesai, $penyelenggara, $dokumentasi1_upload, $dokumentasi2_upload, $dokumentasi3_upload,
-            $lainnya_upload, $gender_wanita, $st_upload, $total_peserta, $kategori,
+            $lainnya_upload, $gender_wanita, $st_upload, $total_peserta, $kategori, $dasar_pelaksanaan,
             $kategoriTerpilih, $subkategoriTerpilih, $report_id, $penyusun, $pengikutTerpilih, $gender_wanita_terpilih;
     public  $edit_toggle;
     public  $selectedSubkategori,
@@ -42,6 +42,7 @@ class Detail extends Component
         $this->when = $report->when;
         $this->why = $report->why;
         $this->user_id = $report->user_id;
+        $this->dasar_pelaksanaan = $report->dasar_pelaksanaan;
         $this->no_st = $report->no_st;
         $this->tanggal_selesai = $report->tanggal_selesai;
         $this->penyelenggara = $report->penyelenggara;
@@ -82,6 +83,54 @@ class Detail extends Component
 
     public function submit()
     {   
+        $this->validate([
+            'what' => 'required|unique:reports,what,' . $this->report_id,
+            'where' => 'required',
+            'when' => 'required',
+            'tanggal_selesai' => 'required|after_or_equal:when',
+            'why' => 'required',
+            'dasar_pelaksanaan' => 'required',
+            'who' => 'required',
+            'penyelenggara' => 'required',
+            'total_peserta' => 'required',
+            'how' => 'required',
+            'gender_wanita' => 'required',
+            'no_st' => 'nullable',
+            'user_id' => 'required',
+            'pengikut' => 'nullable',
+            'kategori' => $this->dokumentasi1 ? 'required' : 'nullable',
+            'subkategori' => 'nullable',
+            'dokumentasi1' => $this->dokumentasi1 ? 'required|image|max:1024' : 'nullable',
+            'dokumentasi2' => 'nullable|image|max:1024',
+            'dokumentasi3' => 'nullable|image|max:1024',
+            'lainnya' => 'nullable|max:3072',
+            'st' => 'nullable|max:30720',
+        ],[
+            'what.required' => 'Harap Isi Kolom What',
+            'where.required' => 'Harap Isi Kolom Where',
+            'when.required' => 'Harap Isi Kolom When',
+            'why.required' => 'Harap Isi Kolom Why',
+            'tanggal_selesai.required' => 'Harap Isi Kolom Tanggal Selesai',
+            'where.required' => 'Harap Isi Kolom Where',
+            'who.required' => 'Harap Isi Kolom Who',
+            'how.required' => 'Harap Isi Kolom How',
+            'penyelenggara.required' => 'Harap Isi Kolom Penyelenggara',
+            'total_peserta.required' => 'Harap Isi Kolom Total Peserta',
+            'gender_wanita.required' => 'Harap Isi Kolom Persentase Wanita Yang Hadir',
+            'user_id.required' => 'Harap Isi Kolom Penyusun',
+            'kategori.required' => 'Harap Isi Kolom Kategori',
+            'dokumentasi1.required' => 'Harap Isi Kolom Dokumentasi 1',
+            'max:1024' => 'Ukuran Maksimal File Adalah 1 MB',
+            'max:3072' => 'Ukuran Maksimal File Adalah 3 MB',
+            'max:30720' => 'Ukuran Maksimal File Adalah 30 MB',
+            'after_or_equal' => 'Tanggal Harus Sama Dengan Atau Lebih Dari Tanggal When',
+            'image' => 'File Harus Bertipe Gambar',
+            'what.unique' => 'Nama Kegiatan Ini Telah Digunakan, Mohon Gunakan Nama Lain',
+            'dasar_pelaksanaan.unique' => 'Harap Isi Kolom Dasar Pelaksanaan Kegiatan'
+
+        ]);
+
+
         Report::whereKey($this->report_id)->update([
                 'user_id' => $this->user_id,
                 'no_st' => $this->no_st,
@@ -90,6 +139,7 @@ class Detail extends Component
                 'why' => $this->why,
                 'where' => $this->where,
                 'who' => $this->who,
+                'dasar_pelaksanaan' => $this->dasar_pelaksanaan,
                 'total_peserta' => $this->total_peserta,
                 'gender_wanita' => $this->gender_wanita,
                 'penyelenggara' => $this->penyelenggara,

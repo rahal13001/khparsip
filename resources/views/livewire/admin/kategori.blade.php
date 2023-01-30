@@ -96,7 +96,7 @@
                                 </td>
                                 
                                 <td class="text-center col-3">
-                                    <a class="btn btn-outline-primary" href=""><i class="bi bi-eye-fill"></i></i></a>
+                                    <a class="btn btn-outline-primary" href="{{ route('categorydashboard', $category->slug) }}"><i class="bi bi-eye-fill"></i></i></a>
                                     @if (!$checked)
                                         @if ($editedcategoryIndex !== $category->id)
                                             <a class="btn btn-outline-warning" wire:click.prevent="editcategory({{ $category->id }})">

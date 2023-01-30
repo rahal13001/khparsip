@@ -21,7 +21,7 @@ class Tambah extends Component
     //deklarasi variabel pada form sekaligus penangkap data
     public
     $pengikut = [],
-    $how, $who, $what, $where, $when, $why, $user_id, $no_st,
+    $how, $who, $what, $where, $when, $why, $user_id, $no_st,$dasar_pelaksanaan,
     $tanggal_selesai, $penyelenggara, $dokumentasi1, $dokumentasi2, $dokumentasi3,
     $lainnya, $gender_wanita, $st, $total_peserta;
 
@@ -39,6 +39,7 @@ class Tambah extends Component
             'when' => 'required',
             'tanggal_selesai' => 'required|after_or_equal:when',
             'why' => 'required',
+            'dasar_pelaksanaan' => 'required',
             'who' => 'required',
             'penyelenggara' => 'required',
             'total_peserta' => 'required',
@@ -55,12 +56,27 @@ class Tambah extends Component
             'lainnya' => 'nullable|max:3072',
             'st' => 'nullable|max:30720',
         ],[
-            'required' => 'Harap Isi Kolom Ini',
+            'what.required' => 'Harap Isi Kolom What',
+            'where.required' => 'Harap Isi Kolom Where',
+            'when.required' => 'Harap Isi Kolom When',
+            'why.required' => 'Harap Isi Kolom Why',
+            'tanggal_selesai.required' => 'Harap Isi Kolom Tanggal Selesai',
+            'where.required' => 'Harap Isi Kolom Where',
+            'who.required' => 'Harap Isi Kolom Who',
+            'how.required' => 'Harap Isi Kolom How',
+            'penyelenggara.required' => 'Harap Isi Kolom Penyelenggara',
+            'total_peserta.required' => 'Harap Isi Kolom Total Peserta',
+            'gender_wanita.required' => 'Harap Isi Kolom Persentase Wanita Yang Hadir',
+            'user_id.required' => 'Harap Isi Kolom Penyusun',
+            'kategori.required' => 'Harap Isi Kolom Kategori',
+            'dokumentasi1.required' => 'Harap Isi Kolom Dokumentasi 1',
             'max:1024' => 'Ukuran Maksimal File Adalah 1 MB',
             'max:3072' => 'Ukuran Maksimal File Adalah 3 MB',
             'max:30720' => 'Ukuran Maksimal File Adalah 30 MB',
             'after_or_equal' => 'Tanggal Harus Sama Dengan Atau Lebih Dari Tanggal When',
-            'image' => 'File Harus Bertipe Gambar'
+            'image' => 'File Harus Bertipe Gambar',
+            'what.unique' => 'Nama Kegiatan Ini Telah Digunakan, Mohon Gunakan Nama Lain',
+            'dasar_pelaksanaan.unique' => 'Harap Isi Kolom Dasar Pelaksanaan Kegiatan'
 
         ]);
 
@@ -80,6 +96,7 @@ class Tambah extends Component
         $report->gender_wanita = $this->gender_wanita;
         $report->how = $this->how;
         $report->total_peserta = $this->total_peserta;
+        $report->dasar_pelaksanaan = $this->dasar_pelaksanaan;
         $report->save();
 
         if ($this->subkategori) {
@@ -164,7 +181,7 @@ class Tambah extends Component
             
           session()->flash('message', 'Data Berhasil Ditambah');
 
-        return redirect()->route('dashboard');
+        return redirect()->route('home');
 
         
     }

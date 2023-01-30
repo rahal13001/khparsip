@@ -360,9 +360,11 @@
                 ><!--//nav-link-->
               </li>
               <!--//nav-item-->
+
+              {{-- Pelayanan --}}
               <li class="nav-item">
                 <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
-                <a class="nav-link {{ Request::is('subkategori') ? 'active' : '' }}" href="{{ url('/subkategori') }}">
+                <a class="nav-link {{ Request::is('pelayanan') ? 'active' : '' }}" href="{{ url('/pelayanan') }}">
                   <span class="nav-icon">
                     <svg
                       width="1em"
@@ -385,49 +387,49 @@
                       <circle cx="3.5" cy="10.5" r=".5" />
                     </svg>
                   </span>
-                  <span class="nav-link-text">Sub Kategori</span> </a
-                ><!--//nav-link-->
+                  <span class="nav-link-text">Laporan Pelayanan</span> </a>
+                  <!--//nav-link-->
               </li>
               
 
-              {{-- Kategori --}}
+              {{--Humas --}}
 
-              {{-- Akhir Kategori --}}
               <li class="nav-item">
                 <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
-                <a class="nav-link {{ Request::is('kategori') ? 'active' : '' }}" href="{{ url('/kategori') }}">
+                <a class="nav-link {{ Request::is('humas') ? 'active' : '' }}" href="{{ url('/humas') }}">
                   <span class="nav-icon">
-                    <svg
-                      width="1em"
-                      height="1em"
-                      viewBox="0 0 16 16"
-                      class="bi bi-card-list"
-                      fill="currentColor"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        fill-rule="evenodd"
-                        d="M14.5 3h-13a.5.5 0 0 0-.5.5v9a.5.5 0 0 0 .5.5h13a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-13z"
-                      />
-                      <path
-                        fill-rule="evenodd"
-                        d="M5 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 5 8zm0-2.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm0 5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5z"
-                      />
-                      <circle cx="3.5" cy="5.5" r=".5" />
-                      <circle cx="3.5" cy="8" r=".5" />
-                      <circle cx="3.5" cy="10.5" r=".5" />
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-megaphone" viewBox="0 0 16 16">
+                      <path d="M13 2.5a1.5 1.5 0 0 1 3 0v11a1.5 1.5 0 0 1-3 0v-.214c-2.162-1.241-4.49-1.843-6.912-2.083l.405 2.712A1 1 0 0 1 5.51 15.1h-.548a1 1 0 0 1-.916-.599l-1.85-3.49a68.14 68.14 0 0 0-.202-.003A2.014 2.014 0 0 1 0 9V7a2.02 2.02 0 0 1 1.992-2.013 74.663 74.663 0 0 0 2.483-.075c3.043-.154 6.148-.849 8.525-2.199V2.5zm1 0v11a.5.5 0 0 0 1 0v-11a.5.5 0 0 0-1 0zm-1 1.35c-2.344 1.205-5.209 1.842-8 2.033v4.233c.18.01.359.022.537.036 2.568.189 5.093.744 7.463 1.993V3.85zm-9 6.215v-4.13a95.09 95.09 0 0 1-1.992.052A1.02 1.02 0 0 0 1 7v2c0 .55.448 1.002 1.006 1.009A60.49 60.49 0 0 1 4 10.065zm-.657.975 1.609 3.037.01.024h.548l-.002-.014-.443-2.966a68.019 68.019 0 0 0-1.722-.082z"/>
                     </svg>
                   </span>
-                  <span class="nav-link-text">Kategori</span> </a
+                  <span class="nav-link-text">Laporan Humas</span> </a
                 ><!--//nav-link-->
               </li>
-              {{-- Dropdown User --}}
+
+              
+              {{--Humas --}}
+
+              <li class="nav-item">
+                <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
+                <a class="nav-link {{ Request::is('kerjasama') ? 'active' : '' }}" href="{{ url('/kerjasama') }}">
+                  <span class="nav-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-workspace" viewBox="0 0 16 16">
+                      <path d="M4 16s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H4Zm4-5.95a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z"/>
+                      <path d="M2 1a2 2 0 0 0-2 2v9.5A1.5 1.5 0 0 0 1.5 14h.653a5.373 5.373 0 0 1 1.066-2H1V3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v9h-2.219c.554.654.89 1.373 1.066 2h.653a1.5 1.5 0 0 0 1.5-1.5V3a2 2 0 0 0-2-2H2Z"/>
+                    </svg>
+                  </span>
+                  <span class="nav-link-text">Laporan Kerjasama</span> </a
+                ><!--//nav-link-->
+              </li>
+
+
+              {{-- Dropdown Admin--}}
               
               <!--//nav-item-->
-              {{-- <li class="nav-item has-submenu">
+              <li class="nav-item has-submenu">
                 <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
                 <a
-                  class="nav-link submenu-toggle {{ Request::is('5w1h-semua*') ? 'active' : '' }} {{ Request::is('humas') ? 'active' : '' }}"
+                  class="nav-link submenu-toggle {{ Request::is('admin*') ? 'active' : '' }}"
                   href="#"
                   data-bs-toggle="collapse"
                   data-bs-target="#submenu-1"
@@ -453,7 +455,7 @@
                       />
                     </svg>
                   </span>
-                  <span class="nav-link-text">User</span>
+                  <span class="nav-link-text">Menu Admin</span>
                   <span class="submenu-arrow">
                     <svg
                       width="1em"
@@ -476,18 +478,22 @@
                   data-bs-parent="#menu-accordion"
                 >
                   <ul class="submenu-list list-unstyled">
-                  @can('show user')
+                  {{-- @can('show user') --}}
                     <li class="submenu-item">
-                      <a class="submenu-link {{ Request::is('humas') ? 'active' : '' }}" href="{{ url('report_humas') }}"
-                        >5W1H berdasar tanggal buat</a>
+                      <a class="submenu-link {{ Request::is('admin') ? 'active' : '' }}" href="{{ url('/admin') }}"
+                        >Data Arsip</a>
                     </li>
-                    @endcan
+                    {{-- @endcan --}}
                     <li class="submenu-item">
-                      <a class="submenu-link {{ Request::is('5w1h-semua*') ? 'active' : '' }}" href="{{ url('report_index') }}">5W1H Semua User</a>
-                    </li> --}}
+                      <a class="submenu-link {{ Request::is('admin/kategori') ? 'active' : '' }}" href="{{ url('admin/kategori') }}">Kategori</a>
+                    </li>
+
+                    <li class="submenu-item">
+                      <a class="submenu-link {{ Request::is('admin/subkategori') ? 'active' : '' }}" href="{{ url('admin/subkategori') }}">Sub Kategori</a>
+                    </li>
                     {{-- <li class="submenu-item">
                       <a class="submenu-link" href="settings.html">Settings</a>
-                    </li> --}}
+                    </li>
                   </ul>
                 </div>
               </li>

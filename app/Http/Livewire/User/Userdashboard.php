@@ -1,18 +1,17 @@
 <?php
 
-namespace App\Http\Livewire\Admin;
-
+namespace App\Http\Livewire\User;
 use App\Models\Category;
 use App\Models\Report;
 use App\Models\Report_User;
 use App\Models\Subcategory;
 use App\Models\Subcategory_Report;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Livewire\WithPagination;
 
 
-
-class Dashboard extends Component
+class Userdashboard extends Component
 {
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
@@ -63,7 +62,7 @@ class Dashboard extends Component
         return view('livewire.admin.dashboard',[
             "datas" => $this->datas,
                       
-            "categories" => Category::all(),
+            "categories" => Category::get(),
         ]);
     }
 
@@ -108,6 +107,10 @@ class Dashboard extends Component
 
     public function getDatasQueryProperty(){
        return Report::with('user', 'categories', 'subcategories')
+                        ->where('user_id', Auth::user()->id)
+                        ->orWhereHas('pengikut', function($pengikutId){
+                            $pengikutId->where('user_id', Auth::user()->id);
+                        })
                         ->when($this->mulai && $this->akhir, function($query){
                             $query->whereBetween('when', [trim($this->mulai), trim($this->akhir)]);})
                         ->when($this->kategori, function($query){

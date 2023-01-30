@@ -1,18 +1,14 @@
 <?php
 
-namespace App\Http\Livewire\Admin;
-
+namespace App\Http\Livewire\User;
 use App\Models\Category;
 use App\Models\Report;
-use App\Models\Report_User;
-use App\Models\Subcategory;
-use App\Models\Subcategory_Report;
+
 use Livewire\Component;
 use Livewire\WithPagination;
+use Illuminate\Support\Facades\Auth;
 
-
-
-class Dashboard extends Component
+class Humas extends Component
 {
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
@@ -61,9 +57,8 @@ class Dashboard extends Component
     {
        
         return view('livewire.admin.dashboard',[
-            "datas" => $this->datas,
-                      
-            "categories" => Category::all(),
+            "datas" => $this->datas,          
+            "categories" => Category::get(),
         ]);
     }
 
@@ -108,6 +103,9 @@ class Dashboard extends Component
 
     public function getDatasQueryProperty(){
        return Report::with('user', 'categories', 'subcategories')
+                        ->whereHas('user', function($humas){
+                            $humas->where('kelompok', 'humas');
+                        })
                         ->when($this->mulai && $this->akhir, function($query){
                             $query->whereBetween('when', [trim($this->mulai), trim($this->akhir)]);})
                         ->when($this->kategori, function($query){
@@ -155,4 +153,8 @@ class Dashboard extends Component
             'timerProgressBar' => true,
         ]);
     }
+    // public function render()
+    // {
+    //     return view('livewire.user.humas');
+    // }
 }

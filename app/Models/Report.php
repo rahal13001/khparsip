@@ -66,4 +66,9 @@ class Report extends Model
         ->orWhere('where', 'like', $term)
         ->orWhere('what', 'like', $term);
     }
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+    
 }
