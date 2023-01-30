@@ -84,9 +84,6 @@
                     @enderror   
                 </div>
            @endif
-
-
-   
  
          <div class="form-group mt-3">
              <label for="no_st"><strong>Nomor Surat Tugas</strong></label>
