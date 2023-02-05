@@ -73,20 +73,6 @@
                             </div>
                         </div>
 
-                        <div class="row mb-3">
-                            <label for="kelompok" class="col-md-4 col-form-label text-md-end">Kelompok Kerja</label>
-
-                            <div class="col-md-6">
-                                <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="kelompok">
-                                    <option selected>Pilih Kelompok Kerja</option>
-                                    <option value="Pimpinan">Pimpinan</option>
-                                    <option value="humas">Humas</option>
-                                    <option value="pelayanan">Pelayanan</option>
-                                    <option value="kerjasama">Kerjasama</option>
-                                  </select>
-                            </div>
-                        </div>
-
                         <div class="row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">

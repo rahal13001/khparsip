@@ -3,14 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\CategoryUser;
 use App\Models\Report;
-use App\Models\Subcategory;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use RealRashid\SweetAlert\Facades\Alert;
 
-class ReportController extends Controller
+class SuperadminController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,15 +17,7 @@ class ReportController extends Controller
      */
     public function index()
     {
-        $cek = Auth::user()->category;
-         
-        if(count($cek) > 0){
-      
-            return view('user.userpercategory');
-        }else{
-            Alert::warning('Anda Belum Memiliki Kategori', 'Hubungi Admin Untuk Berikan Kategori');
-            return redirect()->route('home');
-        }
+        //
     }
 
     /**
@@ -37,11 +27,11 @@ class ReportController extends Controller
      */
     public function create()
     {
-        $users = User::get();
-        $categories = Category::get();
-        $subcategories = Subcategory::get();
+        $Users = User::with('category')->get();
 
-        return view('form.tambah', compact('users', 'categories', 'subcategories'));
+       
+      
+        return view('superadmin.tambahkategori');
     }
 
     /**
@@ -61,9 +51,9 @@ class ReportController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Report $report)
+    public function show($id)
     {
-        return view('admin.detail', compact('report'));
+        //
     }
 
     /**

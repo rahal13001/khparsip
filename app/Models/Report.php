@@ -30,7 +30,6 @@ class Report extends Model
         return $this->hasMany(CategoryReport::class, 'report_id');
     }
 
-
     public function subcategory(){
         return $this->belongsToMany(Subcategory_Report::class, 'subcategory_report', 'report_id', 'subcategory_id')
         ->withTimestamps();
@@ -49,6 +48,11 @@ class Report extends Model
         return $this->hasOne(Documentation::class);
     }
 
+    public function tescategory(){
+        return $this->belongsToMany(Category::class);
+    }
+
+   
     public function sluggable(): array
     {
         return [

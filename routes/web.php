@@ -1,10 +1,14 @@
 <?php
 
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\Permissions\AssignController;
+use App\Http\Controllers\Permissions\AssignuserController;
 use App\Http\Controllers\ReportController;
+use App\Http\Controllers\SuperadminController;
+use GuzzleHttp\Promise\Create;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-
+use Spatie\Permission\Models\Role;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,7 +24,7 @@ use Illuminate\Support\Facades\Route;
 
 
 
-Route::prefix('admin')->group(function () {
+Route::prefix('admin')->middleware('permission:Akses Admin')->group(function () {
 
     Route::get('/', function () {
         return view('admin.dashboard');})->name('dashboard');
@@ -37,7 +41,33 @@ Route::prefix('admin')->group(function () {
 
 });
 
-// Route::group(function(){
+Route::prefix('superadmin')->middleware('permission:Akses Super Admin')->group( function () {
+
+    Route::get('/userkategori', function(){
+        return view ('superadmin.tambahkategori');
+    })->name('superadmin_tambah');
+
+    Route::get('/role', function(){
+        return view('superadmin.role');
+    })->name('role');
+    
+    Route::get('/permission', function(){
+        return view('superadmin.permission');
+    })->name('permission');
+
+    Route::get('/assignrole', function(){
+        return view('superadmin.assignrole');
+    })->name('assignrole');
+
+    Route::get('/assignrole/{role}', [AssignController::class, 'edit'])->name('assign_edit');
+    Route::put('/assignrole/{role}', [AssignController::class, 'update'])->name('assign_update');
+    Route::get('/userkategori/{user}/edit', [AssignuserController::class, 'edit'])->name('assignuser_edit'); 
+    Route::put('/userkategori/{user}', [AssignuserController::class, 'update'])->name('assignuser_update'); 
+
+});
+
+
+Route::middleware('has.role')->group(function(){
     //Tambah Data
     Route::get('/tambah',[ReportController::class, 'create'])->name('tambah_data');
 
@@ -45,18 +75,9 @@ Route::prefix('admin')->group(function () {
     Route::get('/detail/{report}', [ReportController::class, 'show'])->name('report_detail');
 
     //data humas
-    Route::get('/humas', function(){return view('user.humas');})->name('report_humas');
+    Route::get('/reportdashboard', [ReportController::class, 'index'])->name('report_dashboard');
 
-    //data humas
-    Route::get('/kerjasama', function(){return view('user.kerjasama');})->name('report_kerjasama');
-
-    //data pelayanan
-    Route::get('/pelayanan', function(){return view('user.pelayanan');})->name('report_pelayanan');
-// })->midleware('auth');
-
-
-//gambar ckeditor
-// Route::post('image-upload', [ImageUploadController::class, 'storeImage'])->name('imageupload');
+});
 
 Auth::routes();
 
@@ -66,4 +87,5 @@ Auth::routes();
 Route::get('/', function () {
     return view('user.userdashboard');
 })->name('home')->middleware('auth');
+
 

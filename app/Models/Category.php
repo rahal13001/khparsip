@@ -13,6 +13,8 @@ class Category extends Model
     use Sluggable;
     use SoftDeletes;
 
+    use \Znck\Eloquent\Traits\BelongsToThrough;
+
     protected $fillable = [
         'nama',
         'slug'
@@ -29,6 +31,11 @@ class Category extends Model
     public function scopeCari($query, $term){
         $term = "%$term%";
         $query->where('nama','like', $term);
+    }
+
+    
+    public function user(){
+        return $this->belongsToMany(User::class);
     }
 
     public function sluggable(): array
