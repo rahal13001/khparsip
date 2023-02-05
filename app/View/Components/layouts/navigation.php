@@ -24,9 +24,9 @@ class navigation extends Component
      */
     public function render()
     {
-        $role = Role::get();
+        // $role = Role::get();
         
-        return view('components.layouts.navigation', compact('role'));
+        return view('components.layouts.navigation');
         
     }
 }
