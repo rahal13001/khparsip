@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Admin;
 
+use App\Exports\ReportsExport;
 use App\Models\Category;
 use App\Models\Report;
 use App\Models\Report_User;
@@ -9,7 +10,7 @@ use App\Models\Subcategory;
 use App\Models\Subcategory_Report;
 use Livewire\Component;
 use Livewire\WithPagination;
-
+use Maatwebsite\Excel\Facades\Excel;
 
 
 class Dashboard extends Component
@@ -155,4 +156,12 @@ class Dashboard extends Component
             'timerProgressBar' => true,
         ]);
     }
+
+    public function eksporexcel(){
+        
+        // return (new ReportsExport($this->checked))->download('laporan.xlsx');
+        return Excel::download(new ReportsExport($this->checked), 'laporan.xlsx');
+    }
+
+    
 }

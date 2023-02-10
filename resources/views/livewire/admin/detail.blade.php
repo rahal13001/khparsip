@@ -107,7 +107,7 @@
                    <div class="form-group" >
                        
                        @foreach ($selectedSubkategori as $items)
-                           <strong>Kategori : {{ $items->nama }}</strong><br>
+                           <strong>Subkategori : {{ $items->nama }}</strong><br>
                            @foreach ($items->subcategories as $item)
                            <div class="form-check form-check-inline">
                                <input class="form-check-input" type="checkbox" value="{{ $item->id }}" wire:model="subkategori"                              
@@ -340,10 +340,10 @@
                 <div class="row mt-3">
                    <div class="col-md-4">
                    
-                       @if ($dokumentasi1)
-                       Dokumentasi 1 : <br>
-                           <img src="{{ $dokumentasi1->temporaryUrl() }}" width="50%">
-                        @endif
+                    @if ($dokumentasi1)
+                    Dokumentasi 1 : <br>
+                    <img src="{{ $dokumentasi1->temporaryUrl() }}" width="50%">
+                    @endif
                    </div>
    
                    <div class="col-md-4">
@@ -361,12 +361,28 @@
                    </div>
                   
                 </div>
+                <div class="row mt-3">
+                    <div class="col-md-4">
+                    
+                        @if ($st_upload)
+                        Surat Tugas : <br>
+                            <a href="{{ route('view_st') }}" class="btn btn-info" target="_blank" rel="noopener noreferrer">Surat Tugas</a>
+                         @endif
+                    </div>
+    
+                    <div class="col-md-4">
+                        @if ($lainnya_upload)
+                        Dokumentasi Lainnya : <br>
+                        <a href="{{ route('view_lainnya') }}" class="btn btn-info" target="_blank" rel="noopener noreferrer">Dokumentasi Lainnya</a>
+                        @endif
+                    </div>
+                 </div>
                 
                 <div class="form-group mt-3" style="display : {{ $edit_toggle != true ? "none" : "" }} ">
                     <div class="row">
                     <div class="col-md-6 mt-4">
                     <label for="dokumentasi1"><strong>Dokumentasi 1</strong></label>
-                    <input type="file" class="form-control input-rounded" wire:model="dokumentasi1" name="dokumentasi1" value="{{ old('documentation1') }}" id = "dok1" onchange="previewImage1()">
+                    <input type="file" class="form-control input-rounded" wire:model="dokumentasi1" name="dokumentasi1" value="{{ old('documentation1') }}">
                     <div wire:loading wire:target="dokumentasi1">Upload Gambar</div>
                     <small>Ukuran Gambar Maksimal 1024 KB / 1 MB</small><br>
                     @error('dokumentasi1') <span class="error" style="color: red">{{ $message }}</span> @enderror
@@ -416,7 +432,11 @@
             <div class="row">
                 <div class="text-center mt-5 mb-3" >
                     <button class="btn btn-primary mr" wire:click=submit type="submit" wire:loading.attr="disabled" style="display: {{ $edit_toggle != true ? "none" : "" }}">Edit</button>
-                    <a href="{{ url('/') }}" wire:loading.attr="disabled" class="btn btn-warning ml-5">Kembali Ke Dashboard</a>
+                   
+                   @if (!$edit_toggle)
+                   <a href="{{ url('/') }}" wire:loading.attr="disabled" class="btn btn-warning ml-5">Kembali Ke Dashboard</a>
+                   @endif
+                    <a href="{{ url('pdf/'.$slug) }}" wire:loading.attr="disabled" class="btn btn-info ml-5" target="_blank">Cetak PDF</a>
                     
                     <div wire:loading>
                        Data Sedang Di Proses .....
@@ -428,7 +448,8 @@
         </div>
     </div>
     
-    
+</div>
+
     @push('script')
         <script>
             
@@ -455,15 +476,23 @@
         config.removeButtons = 'Flash';
     };
     
-    const editor = CKEDITOR.replace(document.querySelector('#how'));
+    // const editor = CKEDITOR.replace(document.querySelector('#how'));
                
-                    editor.on('change', function(event){
-                        // console.log(event.editor.getData())
-                    @this.set('how', event.editor.getData());
-                    })
-                    .catch(error => {
+    //                 editor.on('change', function(event){
+    //                     // console.log(event.editor.getData())
+    //                 @this.set('how', event.editor.getData());
+    //                 })
+    //                 .catch(error => {
+    //                 console.error(error);
+    //             });
+            try {
+            const editor = CKEDITOR.replace(document.querySelector('#how'));
+            editor.on('change', function(event){
+                this.set('how', event.editor.getData());
+            });
+                } catch (error) {
                     console.error(error);
-                });
+                }
         </script>
     @endpush
     
@@ -500,4 +529,4 @@
     
     @endpush
     
-</div>
+

@@ -79,13 +79,19 @@ Route::middleware('has.role')->group(function(){
 
 });
 
-Auth::routes();
+Auth::routes(['verify' => true]);
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 //user dashboard
 Route::get('/', function () {
     return view('user.userdashboard');
-})->name('home')->middleware('auth');
+})->name('home')->middleware('auth', 'verified');
 
+
+Route::get('/pdf/{report}', [ReportController::class, 'pdf'])->name('pdf');
+//Lihat dokumentasi lainnya
+Route::get('lihat_lainnya/{report}',[ReportController::class, 'viewlainnya'])->name('view_pdf');
+//Lihat dokumentasi st
+Route::get('lihat_st/{report}',[ReportController::class, 'viewst'])->name('view_st');
 

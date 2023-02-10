@@ -9,6 +9,10 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
+use Barryvdh\DomPDF\Facade\Pdf;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
+
+
 
 class ReportController extends Controller
 {
@@ -98,5 +102,25 @@ class ReportController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function pdf(Report $report){
+
+        $q_report = base64_encode(QrCode::size(100)->generate('http://arsip.timurbersinar.com/pdf/'.$report->slug));
+        $q_lainnya = base64_encode(QrCode::size(100)->generate('http://arsip.timurbersinar.com/lihat_lainnya/'.$report->slug));
+        $q_st = base64_encode(QrCode::size(100)->generate('http://arsip.timurbersinar.com/lihat_st/'.$report->slug));
+ 
+        $pdf = PDF::loadView('pdf.pdf', compact('report', 'q_report', 'q_lainnya', 'q_st'));
+        return $pdf->stream('laporan_'.$report->slug.'.pdf');
+    }
+
+    public function viewpdf(Report $report){
+        $lainnya = $report->dokumentasi->lainnya;  
+        return view('lihat.lihatlainnya', compact('lainnya'));
+    }
+
+     public function viewst(Report $report){
+        $lainnya = $report->dokumentasi->st;  
+        return view('lihat.lihatst', compact('lainnya'));
     }
 }

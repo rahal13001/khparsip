@@ -44,12 +44,21 @@ class Report extends Model
         return $this->hasMany(Report_User::class);
     }
 
+    public function pengikutreport(){
+        return $this->belongsToMany(User::class, 'report_user', 'report_id', 'user_id')
+        ->withTimestamps();
+    }
+
     public function dokumentasi(){
         return $this->hasOne(Documentation::class);
     }
 
     public function tescategory(){
         return $this->belongsToMany(Category::class);
+    }
+
+    public function tessubcategory(){
+        return $this->belongsToMany(Subcategory::class, 'subcategory_report', 'report_id', 'subcategory_id');
     }
 
    

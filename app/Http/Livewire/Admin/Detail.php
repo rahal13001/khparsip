@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Admin;
 
 use App\Models\Category;
 use App\Models\CategoryReport;
+use App\Models\Documentation;
 use App\Models\Report;
 use App\Models\Report_User;
 use App\Models\Subcategory;
@@ -17,10 +18,11 @@ use function PHPUnit\Framework\isNull;
 
 class Detail extends Component
 {
+    public $listeners = ['refreshNotes' => '$refresh'];
     use WithFileUploads;
     
     public
-            $pengikut = [],
+            $pengikut = [], $slug,
             $how, $who, $what, $where, $when, $why, $user_id, $no_st,
             $tanggal_selesai, $penyelenggara, $dokumentasi1_upload, $dokumentasi2_upload, $dokumentasi3_upload,
             $lainnya_upload, $gender_wanita, $st_upload, $total_peserta, $kategori, $dasar_pelaksanaan,
@@ -34,6 +36,7 @@ class Detail extends Component
 
     public function mount ($report){
         $this->report_id = $report->id;
+        $this->slug = $report->slug;
         $this->pengikutTerpilih = $report->pengikut;
         $this->how = $report->how;
         $this->who = $report->who;
@@ -98,7 +101,7 @@ class Detail extends Component
             'no_st' => 'nullable',
             'user_id' => 'required',
             'pengikut' => 'nullable',
-            'kategori' => $this->dokumentasi1 ? 'required' : 'nullable',
+            'kategori' => $this->kategori ? 'required' : 'nullable',
             'subkategori' => 'nullable',
             'dokumentasi1' => $this->dokumentasi1 ? 'required|image|max:1024' : 'nullable',
             'dokumentasi2' => 'nullable|image|max:1024',
@@ -230,6 +233,15 @@ class Detail extends Component
             $st_2 = $this->lainnya_upload;
         }
 
+        $documentation = Documentation::where('report_id', $this->report_id);
+        $documentation->update([
+            'dokumentasi1'=>$dokumentasi1_2,
+            'dokumentasi2'=>$dokumentasi2_2,
+            'dokumentasi3'=>$dokumentasi3_2,
+            'lainnya'=>$lainnya_2,
+            'st'=>$st_2
+        ]);
+
         $this->dispatchBrowserEvent('swal:modal', [
             'icon' => 'success',
             'title' => 'Edit Data Berhasil',
@@ -239,7 +251,13 @@ class Detail extends Component
         ]);
 
         $this->edit_toggle = false;
+        $this->dokumentasi1 = null;
+        $this->dokumentasi2 = null;
+        $this->dokumentasi3 = null;
+        $this->lainnya = null;
+        $this->st = null;
 
+       return redirect()->route('report_detail', $this->slug);
 
     }   
    
