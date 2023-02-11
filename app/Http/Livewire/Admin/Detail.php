@@ -64,7 +64,7 @@ class Detail extends Component
     public function render()
     {
         // $reports = Report::with('pengikut', 'user', 'subcategories', 'categories')->get();
-        $users = User::all();
+        $users = User::whereNotNull('email_verified_at')->get();
         $categories = Category::all();
         $subkategoriYangada = Category::with('subcategories')->whereHas('report', function($query){
             $query->where('report_id', $this->report_id);

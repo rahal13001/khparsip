@@ -41,7 +41,7 @@ class ReportController extends Controller
      */
     public function create()
     {
-        $users = User::get();
+        $users = User::whereNotNull('email_verified_at')->get();
         $categories = Category::get();
         $subcategories = Subcategory::get();
 
