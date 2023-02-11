@@ -7,12 +7,15 @@
         <div class="container">
     
             <h3><strong>Detail Data</strong></h3>
-            <div class="form-check form-switch">
+           
 
-                <input class="form-check-input" type="checkbox" role="switch" id="edit_toggle" wire:model = 'edit_toggle'>
-
-                <label class="form-check-label" for="edit_toggle"><b>Edit</b></label>
-              </div>
+            @if ( Auth::user()->id == $user_id || in_array(Auth::user()->id, $pengikutTerpilih->pluck('user_id')->toArray()) || Auth::user()->can(['Akses Admin', 'Akses Super Admin']) )
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" role="switch" id="edit_toggle" wire:model = 'edit_toggle'>
+                    <label class="form-check-label" for="edit_toggle"><b>Edit</b></label>
+                </div>
+            @endif
+ 
             
             
               @if ($errors->any())
@@ -441,6 +444,11 @@
                     <div wire:loading>
                        Data Sedang Di Proses .....
                    </div>
+
+                   <a href="{{ url('/reportdashboard') }}" wire:loading.attr="disabled" class="btn btn-dark ml-3">Kembali Ke Rekap Laporan</a>
+                 @can('Akses Admin')
+                 <a href="{{ url('/admin') }}" wire:loading.attr="disabled" class="btn btn-success ml-5">Dashboard Admin</a>
+                 @endcan
                 
                 </div>
             </div>

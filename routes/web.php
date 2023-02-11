@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Account\PasswordController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\Permissions\AssignController;
 use App\Http\Controllers\Permissions\AssignuserController;
@@ -88,10 +89,21 @@ Route::get('/', function () {
     return view('user.userdashboard');
 })->name('home')->middleware('auth', 'verified');
 
+   //Route profile
+   Route::get('/profile', function () {
+    return view('user.profile');})->middleware('auth');
+
 
 Route::get('/pdf/{report}', [ReportController::class, 'pdf'])->name('pdf');
 //Lihat dokumentasi lainnya
 Route::get('lihat_lainnya/{report}',[ReportController::class, 'viewlainnya'])->name('view_pdf');
 //Lihat dokumentasi st
 Route::get('lihat_st/{report}',[ReportController::class, 'viewst'])->name('view_st');
+
+//Ubah Password
+Route::middleware('auth')->group( function() {
+    Route::get('ubahpassword', [PasswordController::class, 'edit'])->name('password_edit');
+    Route::patch('ubahpassword/{password}', [PasswordController::class, 'update'])->name('password_update');
+});
+
 

@@ -358,7 +358,7 @@
               <ul class="app-menu footer-menu list-unstyled">
                 <li class="nav-item">
                   <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
-                  <a class="nav-link {{ Request::is('ubahpassword') ? 'active' : '' }}" href="{{ url('password_edit') }}">
+                  <a class="nav-link {{ Request::is('ubahpassword') ? 'active' : '' }}" href="{{ url('ubahpassword') }}">
                     <span class="nav-icon">
                       <svg
                         width="1em"
@@ -414,8 +414,8 @@
                 <li class="nav-item">
                   <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
                   <a
-                    class="nav-link"
-                    href="#"
+                    class="nav-link {{ Request::is('profile') ? 'active' : '' }}"
+                    href="{{ url('profile') }}"
                   >
                     <span class="nav-icon">
                       <svg
@@ -436,7 +436,7 @@
                         />
                       </svg>
                     </span>
-                    {{-- <span class="nav-link-text">Profil</span> --}}
+                    <span class="nav-link-text">Profil</span>
                     </a>
                     <!--//nav-link-->
                 </li>

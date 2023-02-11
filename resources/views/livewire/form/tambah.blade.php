@@ -318,13 +318,17 @@
 
              <div class="text-center mt-5 mb-3">
                  <button class="btn btn-primary" wire:click=submit type="submit" wire:loading.attr="disabled">Kirim</button>
-                 <a href="{{ url('/') }}" wire:loading.attr="disabled" class="btn btn-warning ml-5">Kembali Ke Dashboard</a>
+                 <a href="{{ url('/') }}" wire:loading.attr="disabled" class="btn btn-warning ml-5">Dashboard</a>
+                 <a href="{{ url('/reportdashboard') }}" wire:loading.attr="disabled" class="btn btn-info ml-3">Rekap Laporan</a>
+                 @can('Akses Admin')
+                 <a href="{{ url('/admin') }}" wire:loading.attr="disabled" class="btn btn-success ml-5">Dashboard Admin</a>
+                 @endcan
                     
                 <div wire:loading>
                     Data Sedang Di Proses .....
                 </div>
              
-                </div>
+            </div>
 
      
      </div>
