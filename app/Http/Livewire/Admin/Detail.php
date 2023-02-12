@@ -28,7 +28,7 @@ class Detail extends Component
             $lainnya_upload, $gender_wanita, $st_upload, $total_peserta, $kategori, $dasar_pelaksanaan,
             $kategoriTerpilih, $subkategoriTerpilih, $report_id, $penyusun, $pengikutTerpilih, $gender_wanita_terpilih;
     public  $edit_toggle;
-    public  $selectedSubkategori,
+    public  $selectedSubkategori, $deleted_at,
             $subkategori = [];
 
     public  $dokumentasi1, $dokumentasi2, $dokumentasi3, $lainnya, $st;
@@ -59,6 +59,7 @@ class Detail extends Component
         $this->subkategoriTerpilih = $report->subcategories;
         $this->penyusun = $report->user->nama;
         $this->gender_wanita = $report->gender_wanita;
+        $this->deleted_at = $report->deleted_at;
     }
     
     public function render()

@@ -8,13 +8,19 @@
     
             <h3><strong>Detail Data</strong></h3>
            
-
-            @if ( Auth::user()->id == $user_id || in_array(Auth::user()->id, $pengikutTerpilih->pluck('user_id')->toArray()) || Auth::user()->can(['Akses Admin', 'Akses Super Admin']) )
+        @if ($deleted_at != null)
+            <div class="alert alert-danger alert-dismissible fade show">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                Data ini telah dihapus !!! <i class="bi bi-emoji-frown"></i>
+            </div>
+        
+   
+        @elseif ( Auth::user()->id == $user_id || in_array(Auth::user()->id, $pengikutTerpilih->pluck('user_id')->toArray()) || Auth::user()->can(['Akses Admin', 'Akses Super Admin']) && $deleted_at == null)
                 <div class="form-check form-switch">
                     <input class="form-check-input" type="checkbox" role="switch" id="edit_toggle" wire:model = 'edit_toggle'>
                     <label class="form-check-label" for="edit_toggle"><b>Edit</b></label>
                 </div>
-            @endif
+        @endif
  
             
             
@@ -431,27 +437,38 @@
                     </ul>
                 </div>
                 @endif
-        
-            <div class="row">
-                <div class="text-center mt-5 mb-3" >
-                    <button class="btn btn-primary mr" wire:click=submit type="submit" wire:loading.attr="disabled" style="display: {{ $edit_toggle != true ? "none" : "" }}">Edit</button>
-                   
-                   @if (!$edit_toggle)
-                   <a href="{{ url('/') }}" wire:loading.attr="disabled" class="btn btn-warning ml-5">Kembali Ke Dashboard</a>
-                   @endif
-                    <a href="{{ url('pdf/'.$slug) }}" wire:loading.attr="disabled" class="btn btn-info ml-5" target="_blank">Cetak PDF</a>
+            
+            @if ($deleted_at == null)
+                <div class="row">
+                    <div class="text-center mt-5 mb-3" >
+                        <button class="btn btn-primary mr" wire:click=submit type="submit" wire:loading.attr="disabled" style="display: {{ $edit_toggle != true ? "none" : "" }}">Edit</button>
                     
-                    <div wire:loading>
-                       Data Sedang Di Proses .....
-                   </div>
+                    @if (!$edit_toggle)
+                    <a href="{{ url('/') }}" wire:loading.attr="disabled" class="btn btn-warning ml-5">Kembali Ke Dashboard</a>
+                    @endif
+                        <a href="{{ url('pdf/'.$slug) }}" wire:loading.attr="disabled" class="btn btn-info ml-5" target="_blank">Cetak PDF</a>
+                        
+                        <div wire:loading>
+                        Data Sedang Di Proses .....
+                    </div>
 
-                   <a href="{{ url('/reportdashboard') }}" wire:loading.attr="disabled" class="btn btn-dark ml-3">Kembali Ke Rekap Laporan</a>
-                 @can('Akses Admin')
-                 <a href="{{ url('/admin') }}" wire:loading.attr="disabled" class="btn btn-success ml-5">Dashboard Admin</a>
-                 @endcan
-                
+                    <a href="{{ url('/reportdashboard') }}" wire:loading.attr="disabled" class="btn btn-dark ml-3">Kembali Ke Rekap Laporan</a>
+                    @can('Akses Admin')
+                    <a href="{{ url('/admin') }}" wire:loading.attr="disabled" class="btn btn-success ml-5">Dashboard Admin</a>
+                    @endcan
+                    
+                    </div>
                 </div>
-            </div>
+            @else
+                @can('Akses Admin')
+                    <div class="row">
+                        <div class="text-center mt-5 mb-3">
+                            <a href="{{ url('admin/recycle') }}" class="btn btn-primary">Kembali Ke Recycle</a>
+                        </div>
+                    </div>
+                @endcan
+            @endif
+        
         
         </div>
     </div>

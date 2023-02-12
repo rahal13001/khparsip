@@ -67,6 +67,7 @@ class ReportController extends Controller
      */
     public function show(Report $report)
     {
+        $report = Report::withTrashed()->where('slug', $report->slug)->first();
         return view('admin.detail', compact('report'));
     }
 

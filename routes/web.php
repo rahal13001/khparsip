@@ -33,7 +33,7 @@ Route::prefix('admin')->middleware('permission:Akses Admin')->group(function () 
     //kategori
     Route::get('/kategori', function () {
         return view('admin.kategori');})->middleware('auth');
-
+    
     //sub kategori
     Route::get('/subkategori',[CategoryController::class, 'subcategory'])->middleware('auth');
   
@@ -41,6 +41,10 @@ Route::prefix('admin')->middleware('permission:Akses Admin')->group(function () 
     Route::get('/kategori/{category}',[CategoryController::class, 'Categorydasboard'])->name('categorydashboard')->middleware('auth');
 
 });
+
+        //recycle
+    Route::get('/recycle', function () {
+            return view('admin.recycle');})->middleware(['auth', 'permission:Akses Admin']);
 
 Route::prefix('superadmin')->middleware('permission:Akses Super Admin')->group( function () {
 
@@ -73,7 +77,7 @@ Route::middleware('has.role')->group(function(){
     Route::get('/tambah',[ReportController::class, 'create'])->name('tambah_data');
 
     //detail data
-    Route::get('/detail/{report}', [ReportController::class, 'show'])->name('report_detail');
+    Route::get('/detail/{report}', [ReportController::class, 'show'])->name('report_detail')->withTrashed();
 
     //data humas
     Route::get('/reportdashboard', [ReportController::class, 'index'])->name('report_dashboard');
