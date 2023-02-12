@@ -463,7 +463,7 @@
                 @can('Akses Admin')
                     <div class="row">
                         <div class="text-center mt-5 mb-3">
-                            <a href="{{ url('admin/recycle') }}" class="btn btn-primary">Kembali Ke Recycle</a>
+                            <a href="{{ url('/recycle') }}" class="btn btn-primary">Kembali Ke Recycle</a>
                         </div>
                     </div>
                 @endcan
