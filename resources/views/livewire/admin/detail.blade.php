@@ -310,21 +310,21 @@
                     
                         @if ($dokumentasi1_upload)
                         Dokumentasi 1 : <br>
-                            <img src="dokumentasi/{{ $dokumentasi1_upload }}" width="50%">
+                            <img src="{{ asset('dokumentasi/'.$dokumentasi1_upload) }}" width="50%">
                          @endif
                     </div>
     
                     <div class="col-md-4">
                         @if ($dokumentasi2_upload)
                         Dokumentasi 2 : <br>
-                            <img src="dokumentasi/{{ $dokumentasi2_upload }}" width="50%">
+                            <img src="{{ asset('dokumentasi/'.$dokumentasi2_upload) }}" width="50%">
                         @endif
                     </div>
     
                     <div class="col-md-4">
                         @if ($dokumentasi3_upload)
                         Dokumentasi 3 : <br>
-                            <img src="dokumentasi/{{ $dokumentasi3_upload }}" width="50%">
+                            <img src="{{ asset('dokumentasi/'.$dokumentasi3_upload) }}" width="50%">
                         @endif
                     </div>
                    
