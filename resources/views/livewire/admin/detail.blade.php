@@ -310,21 +310,21 @@
                     
                         @if ($dokumentasi1_upload)
                         Dokumentasi 1 : <br>
-                            <img src="/storage/dokumentasi/{{ $dokumentasi1_upload }}" width="50%">
+                            <img src="dokumentasi/{{ $dokumentasi1_upload }}" width="50%">
                          @endif
                     </div>
     
                     <div class="col-md-4">
                         @if ($dokumentasi2_upload)
                         Dokumentasi 2 : <br>
-                            <img src="/storage/dokumentasi/{{ $dokumentasi2_upload }}" width="50%">
+                            <img src="dokumentasi/{{ $dokumentasi2_upload }}" width="50%">
                         @endif
                     </div>
     
                     <div class="col-md-4">
                         @if ($dokumentasi3_upload)
                         Dokumentasi 3 : <br>
-                            <img src="/storage/dokumentasi/{{ $dokumentasi3_upload }}" width="50%">
+                            <img src="dokumentasi/{{ $dokumentasi3_upload }}" width="50%">
                         @endif
                     </div>
                    
@@ -340,7 +340,7 @@
 
                         @if ($st_upload)
                         <div class="col-md-4">
-                            <a href="{{ route('view_st', $st_upload ) }}" class="btn btn-primary" target="_blank"></a>Surat Tugas</a>     
+                            <a href="{{ route('view_st', $st_upload ) }}" class="btn btn-info" target="_blank">Surat Tugas</a>     
                         </div>
                         @endif
                     </div>
@@ -370,13 +370,12 @@
                    </div>
                   
                 </div>
-                <div class="row mt-3">
+                {{-- <div class="row mt-3">
                     <div class="col-md-4">
-                    
                         @if ($st_upload)
-                        Surat Tugas : <br>
-                            <a href="{{ route('view_st', $st_upload) }}" class="btn btn-info" target="_blank" rel="noopener noreferrer">Surat Tugas</a>
-                         @endif
+                        ST : <br>
+                        <a href="{{ route('view_st', $st_upload) }}" class="btn btn-info" target="_blank" rel="noopener noreferrer">Surat Tugas</a>
+                        @endif
                     </div>
     
                     <div class="col-md-4">
@@ -385,7 +384,7 @@
                         <a href="{{ route('view_lainnya', $lainnya_upload) }}" class="btn btn-info" target="_blank" rel="noopener noreferrer">Dokumentasi Lainnya</a>
                         @endif
                     </div>
-                 </div>
+                 </div> --}}
                 
                 <div class="form-group mt-3" style="display : {{ $edit_toggle != true ? "none" : "" }} ">
                     <div class="row">
@@ -444,7 +443,7 @@
                         <button class="btn btn-primary mr" wire:click=submit type="submit" wire:loading.attr="disabled" style="display: {{ $edit_toggle != true ? "none" : "" }}">Edit</button>
                     
                     @if (!$edit_toggle)
-                    <a href="{{ url('/') }}" wire:loading.attr="disabled" class="btn btn-warning ml-5">Kembali Ke Dashboard</a>
+                    <a href="{{ url('/') }}" wire:loading.attr="disabled" class="btn btn-warning ml-5 mr-1">Kembali Ke Dashboard</a>
                     @endif
                         <a href="{{ url('pdf/'.$slug) }}" wire:loading.attr="disabled" class="btn btn-info ml-5" target="_blank">Cetak PDF</a>
                         
