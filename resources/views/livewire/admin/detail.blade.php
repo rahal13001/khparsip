@@ -340,7 +340,7 @@
 
                         @if ($st_upload)
                         <div class="col-md-4">
-                            <a href="{{ route('view_st', $st_upload ) }}" class="btn btn-primary" target="_blank">Surat Tugas</a>     
+                            <a href="{{ route('view_st', $st_upload ) }}" class="btn btn-primary" target="_blank"></a>Surat Tugas</a>     
                         </div>
                         @endif
                     </div>
@@ -375,7 +375,7 @@
                     
                         @if ($st_upload)
                         Surat Tugas : <br>
-                            <a href="{{ route('view_st', $lainnya_upload) }}" class="btn btn-info" target="_blank" rel="noopener noreferrer">Surat Tugas</a>
+                            <a href="{{ route('view_st', $st_upload) }}" class="btn btn-info" target="_blank" rel="noopener noreferrer">Surat Tugas</a>
                          @endif
                     </div>
     
