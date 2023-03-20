@@ -126,4 +126,20 @@ class ReportController extends Controller
         $st = $st_upload;  
         return view('lihat.lihatst', compact('st'));
     }
+
+    public function view_dokumentasi1($dokumentasi1_upload){
+       
+        $dok1 = $dokumentasi1_upload;  
+        return view('lihat.lihatdokumentasi1', compact('dok1'));
+    }
+    public function view_dokumentasi2($dokumentasi2_upload){
+       
+        $dok2 = $dokumentasi2_upload;  
+        return view('lihat.lihatdokumentasi2', compact('dok2'));
+    }
+    public function view_dokumentasi3($dokumentasi3_upload){
+       
+        $dok3 = $dokumentasi3_upload;  
+        return view('lihat.lihatdokumentasi3', compact('dok3'));
+    }
 }

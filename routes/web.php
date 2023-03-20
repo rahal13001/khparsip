@@ -106,6 +106,11 @@ Route::get('lihat_lainnya/{lainnya_upload}',[ReportController::class, 'viewlainn
 //Lihat dokumentasi st
 Route::get('lihat_st/{st_upload}',[ReportController::class, 'viewst'])->name('view_st');
 
+//Lihat dokumentasi 1
+Route::get('lihat_dokumentasi1/{dokumentasi1_upload}',[ReportController::class, 'view_dokumentasi1'])->name('view_dok1');
+Route::get('lihat_dokumentasi2/{dokumentasi2_upload}',[ReportController::class, 'view_dokumentasi2'])->name('view_dok2');
+Route::get('lihat_dokumentasi3/{dokumentasi3_upload}',[ReportController::class, 'view_dokumentasi3'])->name('view_dok3');
+
 //Ubah Password
 Route::middleware('auth')->group( function() {
     Route::get('ubahpassword', [PasswordController::class, 'edit'])->name('password_edit');

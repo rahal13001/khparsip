@@ -75,6 +75,7 @@ class Detail extends Component
         return view('livewire.admin.detail', compact('users', 'categories', 'subkategoriYangada'));
     }
 
+
     public function updatedKategori($kategori_id){
  
         $this->selectedSubkategori = Category::with('subcategories')->whereKey($kategori_id)->get();

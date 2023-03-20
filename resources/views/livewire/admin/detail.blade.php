@@ -310,21 +310,21 @@
                     
                         @if ($dokumentasi1_upload)
                         Dokumentasi 1 : <br>
-                            <img src="{{ asset('dokumentasi/'.$dokumentasi1_upload) }}" width="50%">
+                            <a href="{{ route('view_dok1', $dokumentasi1_upload) }}" target="_blank" rel="noopener noreferrer"><img src="{{ asset('dokumentasi/'.$dokumentasi1_upload) }}" width="50%"></a>
                          @endif
                     </div>
     
                     <div class="col-md-4">
                         @if ($dokumentasi2_upload)
                         Dokumentasi 2 : <br>
-                            <img src="{{ asset('dokumentasi/'.$dokumentasi2_upload) }}" width="50%">
+                        <a href="{{ route('view_dok2', $dokumentasi2_upload) }}" target="_blank" rel="noopener noreferrer"><img src="{{ asset('dokumentasi/'.$dokumentasi2_upload) }}" width="50%"></a>
                         @endif
                     </div>
     
                     <div class="col-md-4">
                         @if ($dokumentasi3_upload)
                         Dokumentasi 3 : <br>
-                            <img src="{{ asset('dokumentasi/'.$dokumentasi3_upload) }}" width="50%">
+                        <a href="{{ route('view_dok3', $dokumentasi3_upload) }}" target="_blank" rel="noopener noreferrer"><img src="{{ asset('dokumentasi/'.$dokumentasi3_upload) }}" width="50%"></a>
                         @endif
                     </div>
                    
@@ -470,8 +470,7 @@
         
         
         </div>
-    </div>
-    
+    </div>    
 </div>
 
     @push('script')
