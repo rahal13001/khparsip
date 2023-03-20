@@ -99,10 +99,12 @@ Route::get('/', function () {
 
 
 Route::get('/pdf/{report}', [ReportController::class, 'pdf'])->name('pdf');
+
 //Lihat dokumentasi lainnya
-Route::get('lihat_lainnya/{report}',[ReportController::class, 'viewlainnya'])->name('view_lainnya');
+Route::get('lihat_lainnya/{lainnya_upload}',[ReportController::class, 'viewlainnya'])->name('view_lainnya');
+
 //Lihat dokumentasi st
-Route::get('lihat_st/{report}',[ReportController::class, 'viewst'])->name('view_st');
+Route::get('lihat_st/{st_upload}',[ReportController::class, 'viewst'])->name('view_st');
 
 //Ubah Password
 Route::middleware('auth')->group( function() {

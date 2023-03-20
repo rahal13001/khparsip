@@ -115,13 +115,15 @@ class ReportController extends Controller
         return $pdf->stream('laporan_'.$report->slug.'.pdf');
     }
 
-    public function viewpdf(Report $report){
-        $lainnya = $report->dokumentasi->lainnya;  
+    public function viewlainnya($lainnya_upload){
+        
+        $lainnya = $lainnya_upload;  
         return view('lihat.lihatlainnya', compact('lainnya'));
     }
 
-     public function viewst(Report $report){
-        $lainnya = $report->dokumentasi->st;  
-        return view('lihat.lihatst', compact('lainnya'));
+     public function viewst($st_upload){
+       
+        $st = $st_upload;  
+        return view('lihat.lihatst', compact('st'));
     }
 }

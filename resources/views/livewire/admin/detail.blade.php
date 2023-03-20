@@ -334,13 +334,13 @@
                     <div class="row mt-3">
                         @if ($lainnya_upload)
                         <div class="col-md-4">
-                            <a href="{{ route('view_st') }}" class="btn btn-primary">Dokumentasi Lainnya</a>     
+                            <a href="{{ route('view_lainnya', $lainnya_upload ) }}" class="btn btn-primary" target="_blank">Dokumentasi Lainnya</a>     
                         </div>
                         @endif
 
                         @if ($st_upload)
                         <div class="col-md-4">
-                            <a href="{{ route('view_lainnya') }}" class="btn btn-primary">Dokumentasi Lainnya</a>     
+                            <a href="{{ route('view_st', $st_upload ) }}" class="btn btn-primary" target="_blank">Surat Tugas</a>     
                         </div>
                         @endif
                     </div>
@@ -375,14 +375,14 @@
                     
                         @if ($st_upload)
                         Surat Tugas : <br>
-                            <a href="{{ route('view_st') }}" class="btn btn-info" target="_blank" rel="noopener noreferrer">Surat Tugas</a>
+                            <a href="{{ route('view_st', $lainnya_upload) }}" class="btn btn-info" target="_blank" rel="noopener noreferrer">Surat Tugas</a>
                          @endif
                     </div>
     
                     <div class="col-md-4">
                         @if ($lainnya_upload)
                         Dokumentasi Lainnya : <br>
-                        <a href="{{ route('view_lainnya') }}" class="btn btn-info" target="_blank" rel="noopener noreferrer">Dokumentasi Lainnya</a>
+                        <a href="{{ route('view_lainnya', $lainnya_upload) }}" class="btn btn-info" target="_blank" rel="noopener noreferrer">Dokumentasi Lainnya</a>
                         @endif
                     </div>
                  </div>
