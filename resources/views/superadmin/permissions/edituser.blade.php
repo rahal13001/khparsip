@@ -17,27 +17,25 @@
          });
 });
     </script>
+
+<script src="{{ asset('vendor/sweetalert/sweetalert.all.js') }}"></script>
+<script>
+
+   window.addEventListener('swal:modal',function (e) {
+     Swal.fire(e.detail);
+   });
+ </script>
 @endpush
 
 @section('menu', 'Assign User')
 @section('content')
+            @livewireStyles
+                @livewire('superadmin.ubahnama', ['user' => $user])
+            @livewireScripts
                     <form action="{{ route('assignuser_update', $user->id) }}" method="post">
                         @method('put')
                         @csrf
-                            <div class="form-group mt-3">
-                                <label for="user">User</label>
-                                <select disabled name="user" id="user" class="form-control input-rounded select2">
-                                <option disabled selected>Pilih User</option>
-                                    @foreach ($users as $pengguna)
-                                    <option  {{ $user->id == $pengguna->id ? 'selected' : '' }} value="{{ $pengguna->id }}"> {{ $pengguna->name }}</option>
-                                    @endforeach
-                                </select> 
-                                                                
-                                @error('user')
-                                    <div class="text-danger mt-2 d-block">{{ $message }}</div>
-                                @enderror                                  
-                            </div>
-
+                         
                             <div class="form-group mt-3">
                                 <label for="roles">Pilih Kategori</label>
                                 <select name="categories[]" id="categories" class="form-control input-rounded select2" multiple>

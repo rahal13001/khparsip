@@ -32,7 +32,7 @@ class Detail extends Component
             $subkategori = [];
 
     public  $dokumentasi1, $dokumentasi2, $dokumentasi3, $lainnya, $st;
-   
+  
 
     public function mount ($report){
         $this->report_id = $report->id;
@@ -61,7 +61,7 @@ class Detail extends Component
         $this->gender_wanita = $report->gender_wanita;
         $this->deleted_at = $report->deleted_at;
     }
-    
+ 
     public function render()
     {
         // $reports = Report::with('pengikut', 'user', 'subcategories', 'categories')->get();

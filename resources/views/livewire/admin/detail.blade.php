@@ -334,13 +334,13 @@
                     <div class="row mt-3">
                         @if ($lainnya_upload)
                         <div class="col-md-4">
-                            <a href="{{ route('st') }}" class="btn btn-primary">Dokumentasi Lainnya</a>     
+                            <a href="{{ route('view_st') }}" class="btn btn-primary">Dokumentasi Lainnya</a>     
                         </div>
                         @endif
 
                         @if ($st_upload)
                         <div class="col-md-4">
-                            <a href="{{ route('st') }}" class="btn btn-primary">Dokumentasi Lainnya</a>     
+                            <a href="{{ route('view_lainnya') }}" class="btn btn-primary">Dokumentasi Lainnya</a>     
                         </div>
                         @endif
                     </div>

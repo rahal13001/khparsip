@@ -69,7 +69,7 @@
   <body>
     <!-- KOP Surat -->
     <div class="header">
-      <img class="header-img" src="{{ asset('img/KOP.jpg') }}" alt="KOP Image">
+      <img class="header-img" src="{{ asset('img/KOP2.jpg') }}" alt="KOP Image">
     </div>
     <br>
     <!-- Tabel Informasi -->

@@ -100,7 +100,7 @@ Route::get('/', function () {
 
 Route::get('/pdf/{report}', [ReportController::class, 'pdf'])->name('pdf');
 //Lihat dokumentasi lainnya
-Route::get('lihat_lainnya/{report}',[ReportController::class, 'viewlainnya'])->name('view_pdf');
+Route::get('lihat_lainnya/{report}',[ReportController::class, 'viewlainnya'])->name('view_lainnya');
 //Lihat dokumentasi st
 Route::get('lihat_st/{report}',[ReportController::class, 'viewst'])->name('view_st');
 

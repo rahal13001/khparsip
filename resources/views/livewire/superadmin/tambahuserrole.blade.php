@@ -61,7 +61,7 @@
    
     $(document).ready(function() {
     $('#role').select2({
-        placeholder : "Pilih Role "
+        placeholder : "Pilih Kategori"
     });
             $('#role').on('change', function (e) {
                 var data = $('#role').select2("val");
